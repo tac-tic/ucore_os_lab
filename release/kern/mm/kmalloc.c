@@ -38,6 +38,19 @@
  * essentially no allocation space overhead.
  */
 
+/*
+ *
+ * slob block represents free spaces
+ * |slob_block|...free spaces...|...allocated spaces...|slob_block|...free spaces...|
+ *       |                                             ^
+ *       |_____________________________________________|
+ *
+ *
+ * |---------allocated spaces---------|
+ * |                                  |
+ * |slob_block|......size_t size......|
+ * 
+ */
 
 //some helper
 #define spin_lock_irqsave(l, f) local_intr_save(f)
