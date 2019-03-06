@@ -49,7 +49,7 @@
  * |---------allocated spaces---------|
  * |                                  |
  * |slob_block|......size_t size......|
- * 
+ *
  */
 
 //some helper

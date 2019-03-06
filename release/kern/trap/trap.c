@@ -237,6 +237,13 @@ trap_dispatch(struct trapframe *tf) {
         break;
     case IRQ_OFFSET + IRQ_COM1:
     case IRQ_OFFSET + IRQ_KBD:
+
+        /* add terminal
+         * add write buffer to terminal's proc struct
+         * if current proc has writer buffer, then dev_stdin_write(char) will not be called
+         * meanwhile, the char achieved by cons_getc() will be written into the writer buffer
+         */
+
         // There are user level shell in LAB8, so we need change COM/KBD interrupt processing.
         c = cons_getc();
         {
