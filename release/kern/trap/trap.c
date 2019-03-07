@@ -239,7 +239,7 @@ trap_dispatch(struct trapframe *tf) {
     case IRQ_OFFSET + IRQ_KBD:
 
         /* add terminal
-         * add write buffer to terminal's proc struct
+         * add write buffer to every process's proc struct
          * if current proc has writer buffer, then dev_stdin_write(char) will not be called
          * meanwhile, the char achieved by cons_getc() will be written into the writer buffer
          */
