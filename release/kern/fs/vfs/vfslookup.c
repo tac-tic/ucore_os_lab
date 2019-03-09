@@ -76,6 +76,12 @@ vfs_lookup(char *path, struct inode **node_store) {
         return ret;
     }
     if (*path != '\0') {
+
+        /*
+         * the implementation of vfs_lookup below if wrong, it should loop calling vop_lookup
+         * to parse path split by '/'.
+         */
+
         ret = vop_lookup(node, path, node_store);
         vop_ref_dec(node);
         return ret;
