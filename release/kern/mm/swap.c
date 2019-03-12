@@ -102,6 +102,16 @@ swap_out(struct mm_struct *mm, int n, int in_tick)
           pte_t *ptep = get_pte(mm->pgdir, v, 0);
           assert((*ptep & PTE_P) != 0);
 
+          /*
+           * the problem is that different processes share the same virtual memory address
+           * range, so the page swapped onto disk may be override by another swapping
+           * page belong to another process.
+           *
+           * so, a bitmap for the swapfs should be set on the first few sections of disk,
+           * the swapfs_write should scan the bitmap for the vacant sections to hold the
+           * swapping page.
+           */
+
           if (swapfs_write( (page->pra_vaddr/PGSIZE+1)<<8, page) != 0) {
                     cprintf("SWAP: failed to save\n");
                     sm->map_swappable(mm, v, page, 0);
