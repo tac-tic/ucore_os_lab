@@ -36,6 +36,9 @@ dev_stdin_write(char c) {
     }
 }
 
+/*
+ * dev_stdin_read should write buf to the write buffer of the process who own the input window
+ */
 static int
 dev_stdin_read(char *buf, size_t len) {
     int ret = 0;

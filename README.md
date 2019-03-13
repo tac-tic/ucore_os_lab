@@ -6,7 +6,7 @@ Notice 2:
 
 Add a component of terminal to kernel.
 
-Add write buffer to every process's proc struct, a static variable to indict the process who owns the input window and a static variable to indict the write buffer of that process. Function dev_stdin_write(char) will not be called, meanwhile, the char achieved by cons_getc() will be written into that writer buffer. The first process who owns the input window is terminal, if terminal inits a new process, then this process will own the input window.
+Add write buffer to every process's proc struct, a static variable to indict the process who owns the input window and a static variable to indict the write buffer of that process. Function dev_stdin_write(char) should be modified to write the char achieved by cons_getc() into that writer buffer. The first process who owns the input window is terminal, if terminal inits a new process, then this process will own the input window.
 
 Notice 3:
 
