@@ -250,8 +250,8 @@ trap_dispatch(struct trapframe *tf) {
 
         /* add terminal
          * add write buffer to every process's proc struct
-         * add a global variable to indict the process who owns the input window
-         * add a global variable to indict the write buffer of that process
+         * add a global variable to indicate the process who owns the input window
+         * add a global variable to indicate the write buffer of that process
          * dev_stdin_write(char) should be modified to write char achieved by cons_getc() into that write buffer
          * the first process who owns the input window is terminal
          * if terminal inits a new process, this process will own the input window
