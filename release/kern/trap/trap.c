@@ -250,8 +250,11 @@ trap_dispatch(struct trapframe *tf) {
 
         /* add terminal
          * add write buffer to every process's proc struct
-         * if current proc has writer buffer, then dev_stdin_write(char) will not be called
-         * meanwhile, the char achieved by cons_getc() will be written into the writer buffer
+         * add a static variable to indict the process who owns the input window
+         * add a static variable to indict the write buffer of that process
+         * dev_stdin_write(char) will not be called, meanwhile, the char achieved by cons_getc() will be written into that writer buffer
+         * the first process who owns the input window is terminal
+         * if terminal inits a new process, this process will own the input window
          */
 
         // There are user level shell in LAB8, so we need change COM/KBD interrupt processing.
